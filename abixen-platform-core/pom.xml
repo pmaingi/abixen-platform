@@ -33,7 +33,7 @@
         <gmavenplus.version>1.5</gmavenplus.version>
         <maven.failsafe.version>2.18.1</maven.failsafe.version>
         <maven.surefire.version>2.20</maven.surefire.version>
-        <liquibase.version>3.5.3</liquibase.version>
+        <liquibase.version>3.6.3</liquibase.version>
     </properties>
 
     <dependencyManagement>
