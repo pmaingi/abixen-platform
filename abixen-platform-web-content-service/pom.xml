@@ -29,7 +29,7 @@
         <gmavenplus.version>1.5</gmavenplus.version>
         <maven.failsafe.version>2.18.1</maven.failsafe.version>
         <maven.surefire.version>2.20</maven.surefire.version>
-        <docker.plugin.version>0.4.13</docker.plugin.version>
+        <docker.plugin.version>1.2.0</docker.plugin.version>
         <docker.image.prefix>abixen</docker.image.prefix>
         <log4j2.version>2.5</log4j2.version>
         <log4j-slf4j-version>2.0.1</log4j-slf4j-version>
