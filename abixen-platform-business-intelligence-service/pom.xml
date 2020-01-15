@@ -32,7 +32,7 @@
         <gmavenplus.version>1.5</gmavenplus.version>
         <maven.failsafe.version>2.18.1</maven.failsafe.version>
         <maven.surefire.version>2.20</maven.surefire.version>
-        <docker.plugin.version>0.4.13</docker.plugin.version>
+        <docker.plugin.version>1.2.2</docker.plugin.version>
         <docker.image.prefix>abixen</docker.image.prefix>
     </properties>
 
