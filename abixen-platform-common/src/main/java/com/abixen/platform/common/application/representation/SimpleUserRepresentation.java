@@ -11,30 +11,19 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
+package com.abixen.platform.common.application.representation;
 
-package com.abixen.platform.common.domain.model;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.Accessors;
 
+@Getter
+@Setter
+@Accessors(chain = true)
+@ToString
+public class SimpleUserRepresentation {
 
-
-public abstract class EntityBuilder<T> {
-
-    protected T product;
-
-    {
-        initProduct();
-    }
-
-    public T build() {
-        T product = assembleProduct();
-        T temp = product;
-        initProduct();
-        return temp;
-    }
-
-    protected abstract void initProduct();
-
-    protected T assembleProduct() {
-        return this.product;
-    }
-
+    private Long id;
+    private String username;
 }

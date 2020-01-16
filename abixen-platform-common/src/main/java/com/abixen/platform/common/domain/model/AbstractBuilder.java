@@ -11,19 +11,32 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-package com.abixen.platform.common.application.dto;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-import lombok.experimental.Accessors;
+package com.abixen.platform.common.domain.model;
 
-@Getter
-@Setter
-@Accessors(chain = true)
-@ToString
-public class SimpleUserDto {
 
-    private Long id;
-    private String username;
+public abstract class AbstractBuilder<T> {
+
+    protected T product;
+
+    public AbstractBuilder() {
+        initProduct();
+    }
+
+    public final T build() {
+        final T temp = assembleProduct();
+        if (temp == null) {
+            throw new IllegalStateException("Only single build() call is allowed");
+        }
+        this.product = null;
+
+        return temp;
+    }
+
+    protected abstract void initProduct();
+
+    protected T assembleProduct() {
+        return this.product;
+    }
+
 }
