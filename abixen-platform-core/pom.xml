@@ -48,7 +48,7 @@
         <maven.failsafe.version>2.18.1</maven.failsafe.version>
         <maven.surefire.version>2.20</maven.surefire.version>
         <spring-boot-maven-plugin.version>1.5.7.RELEASE</spring-boot-maven-plugin.version>
-        <liquibase.version>3.5.3</liquibase.version>
+        <liquibase.version>3.8.5</liquibase.version>
     </properties>
 
     <dependencyManagement>
