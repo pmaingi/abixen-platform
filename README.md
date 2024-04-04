@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/abixen/abixen-platform.svg?branch=master)](https://travis-ci.org/abixen/abixen-platform)
+[![Build Status](https://travis-ci.com/abixen/abixen-platform.svg?branch=master)](https://travis-ci.com/abixen/abixen-platform)
 
 # What is Abixen Platform
 
@@ -9,6 +9,10 @@ The main goal of the project is a creation of functionalities through creating p
 All you have to do in order to create an entirely new functionality is to implement a new, separated microservice.
 Now you can register it in Abixen Platform and start using by delivered configuration wizards and CMS.
 There is also an Abixen Platform API, which allows you to accelerate the process of new microservices creation.
+
+A sample application built using Abixen Platform can look like in the following screenshot:
+![Abixen Platform Demo](documentation-image/abixen-platform-demo.png "Abixen Platform Demo")
+
 
 Abixen Platform's organizational division consists of pages and modules. 
 User with appropriate privileges can create any page and select a layout. 
@@ -92,6 +96,12 @@ in October 2016 he decided to publish the source code on GitHub.
 As well Mariusz Kumor decided to begin further development.
 The great motivation were flattering words of his friends, 
 also some companies about the project and its ideas.
+
+# Give a Star ⭐
+Creating this product I put emphasis primarily on quality and value for end users. It is also very important for me that the software is built based on the cutting-edge technologies (but in the same time stable ones) and the best design patterns and practices. As you can guess, it takes a lot of time, and the product is open source - so everyone can use the effects of my and other Contributors work for free. If you like this project, learned something or you are using it, please give it a star ⭐. This is the best motivation for me to continue on. Thank you!
+
+# Share It
+There are not many similar open source products like this type of application. If in your opinion this repository makes a difference and deserves it - please share it with your friends, mates and on social networks. I will be very grateful.
 
 # Known issues
 

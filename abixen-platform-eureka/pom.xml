@@ -6,9 +6,9 @@
     <name>Abixen Platform Eureka</name>
 
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.7.RELEASE</version>
+        <artifactId>abixen-platform</artifactId>
+        <groupId>com.abixen</groupId>
+        <version>1.0-SNAPSHOT</version>
     </parent>
 
 
@@ -24,7 +24,9 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <start-class>com.abixen.platform.eureka.PlatformEurekaApplication</start-class>
         <docker.plugin.version>0.4.13</docker.plugin.version>
+        <jaxb.version>2.3.1</jaxb.version>
         <docker.image.prefix>abixen</docker.image.prefix>
+        <docker.skip>true</docker.skip>
     </properties>
 
     <dependencyManagement>
@@ -32,7 +34,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Dalston.SR3</version>
+                <version>${spring.cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -40,9 +42,26 @@
     </dependencyManagement>
 
     <dependencies>
+        <!-- Spring Cloud -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka-server</artifactId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+        </dependency>
+
+        <!-- XML -->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>${jaxb.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>${jaxb.version}</version>
         </dependency>
     </dependencies>
 
@@ -52,7 +71,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>1.5.7.RELEASE</version>
                 <executions>
                     <execution>
                         <goals>
@@ -88,33 +106,10 @@
                             <include>${project.build.finalName}.jar</include>
                         </resource>
                     </resources>
+                    <skipDocker>${docker.skip}</skipDocker>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-
-    <repositories>
-        <repository>
-            <id>spring-releases</id>
-            <name>Spring Releases</name>
-            <url>http://repo.spring.io/libs-release-local</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>repo.spring.io-milestones</id>
-            <name>repo.spring.io-milestones</name>
-            <url>http://repo.spring.io/libs-milestone-local</url>
-        </repository>
-        <repository>
-            <id>repo.spring.io-snapshots</id>
-            <name>repo.spring.io-snapshots</name>
-            <url>http://repo.spring.io/libs-snapshot-local</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
 
 </project>

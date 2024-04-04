@@ -13,12 +13,10 @@
  */
 package com.abixen.platform.core.infrastructure.configuration;
 
-import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.retry.annotation.EnableRetry;
-import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
 import static com.abixen.platform.common.infrastructure.util.PlatformProfiles.DEV;
 import static com.abixen.platform.common.infrastructure.util.PlatformProfiles.DOCKER;
@@ -26,8 +24,6 @@ import static com.abixen.platform.common.infrastructure.util.PlatformProfiles.DO
 @Profile({DEV, DOCKER})
 @Configuration
 @EnableRetry
-@EnableRedisHttpSession
 @EnableEurekaClient
-@EnableCircuitBreaker
 public class CoreCloudIntegrationConfiguration {
 }

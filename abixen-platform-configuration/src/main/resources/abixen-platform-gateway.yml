@@ -1,8 +1,6 @@
 server:
   port: 9090
 
-security:
-  sessions: ALWAYS
 
 
 ---
@@ -16,67 +14,72 @@ spring:
   zipkin:
     baseUrl: http://zipkin:9411
 
-zuul:
-  host:
-    connect-timeout-millis: 10000
-    socket-timeout-millis: 60000
-  routes:
-    # Begin of custom module microservices - add mapping relevant to your microservice
+  cloud:
+    gateway:
+      routes:
+      # Begin of custom module microservices - add mapping relevant to your microservice
 
-    # Begin of Business Intelligence microservice
-    businessIntelligenceApplication:
-      path: /service/abixen/business-intelligence/application/**
-      url: http://business-intelligence-service:9091/service/abixen/business-intelligence/application
-      sensitive-headers:
-    businessIntelligenceApplicationApi:
-      path: /api/service/abixen/business-intelligence/application/**
-      url: http://business-intelligence-service:9091/api/service/abixen/business-intelligence/application
-      sensitive-headers:
-    businessIntelligenceAdmin:
-      path: /service/abixen/business-intelligence/control-panel/**
-      url: http://business-intelligence-service:9091/service/abixen/business-intelligence/control-panel
-      sensitive-headers:
-    businessIntelligenceAdminApi:
-      path: /api/service/abixen/business-intelligence/control-panel/**
-      url: http://business-intelligence-service:9091/api/service/abixen/business-intelligence/control-panel
-      sensitive-headers:
-    # End of Business Intelligence microservice
+      # Begin of Business Intelligence microservice
+      - id: businessIntelligenceApplication
+        uri: http://business-intelligence-service:9091/service/abixen/business-intelligence/application
+        predicates:
+        - Path=/service/abixen/business-intelligence/application/**
+        filters:
+        - CircuitBreaker
+      - id: businessIntelligenceApplicationApi
+        uri: http://business-intelligence-service:9091/api/service/abixen/business-intelligence/application
+        predicates:
+        - Path=/api/service/abixen/business-intelligence/application/**
+        filters:
+        - CircuitBreaker
+      - id: businessIntelligenceAdmin
+        uri: http://business-intelligence-service:9091/service/abixen/business-intelligence/control-panel
+        predicates:
+        - Path=/service/abixen/business-intelligence/control-panel/**
+        filters:
+        - CircuitBreaker
+      - id: businessIntelligenceAdminApi
+        uri: http://business-intelligence-service:9091/api/service/abixen/business-intelligence/control-panel
+        predicates:
+        - Path=/api/service/abixen/business-intelligence/control-panel/**
+        filters:
+        - CircuitBreaker
+      # End of Business Intelligence microservice
 
-    # Begin of Web Content microservice
-    webContentApplication:
-      path: /service/abixen/web-content/application/**
-      url: http://web-content-service:9092/service/abixen/web-content/application
-      sensitive-headers:
-    webContentApplicationApi:
-      path: /api/service/abixen/web-content/application/**
-      url: http://web-content-service:9092/api/service/abixen/web-content/application
-      sensitive-headers:
-    webContentAdmin:
-      path: /service/abixen/web-content/control-panel/**
-      url: http://web-content-service:9092/service/abixen/web-content/control-panel
-      sensitive-headers:
-    webContentAdminApi:
-      path: /api/service/abixen/web-content/control-panel/**
-      url: http://web-content-service:9092/api/service/abixen/web-content/control-panel
-      sensitive-headers:
-    # End of Web Content microservice
+      # Begin of Web Content microservice
+      - id: webContentApplication
+        uri: http://web-content-service:9092/service/abixen/web-content/application
+        predicates:
+        - Path=/service/abixen/web-content/application/**
+        filters:
+        - CircuitBreaker
+      - id: webContentApplicationApi
+        uri: http://web-content-service:9092/api/service/abixen/web-content/application
+        predicates:
+        - Path=/api/service/abixen/web-content/application/**
+        filters:
+        - CircuitBreaker
+      - id: webContentAdmin
+        uri: http://web-content-service:9092/service/abixen/web-content/control-panel
+        predicates:
+        - Path=/service/abixen/web-content/control-panel/**
+        filters:
+        - CircuitBreaker
+      - id: webContentAdminApi
+        uri: http://web-content-service:9092/api/service/abixen/web-content/control-panel
+        predicates:
+        - Path=/api/service/abixen/web-content/control-panel/**
+        filters:
+        - CircuitBreaker
+      # End of Web Content microservice
 
-    # End of custom module microservices
-    resource:
-      path: /resource/**
-      url: http://core:9000
-      sensitive-headers:
-    api:
-      path: /api/**
-      url: http://core:9000/api
-      sensitive-headers:
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 60000
+      # End of custom module microservices
+      - id: api
+        uri: http://core:9000/api
+        predicates:
+        - Path=/api/**
+        filters:
+        - CircuitBreaker
 
 eureka:
   instance:
@@ -101,64 +104,73 @@ spring:
   zipkin:
     baseUrl: http://localhost:9411
 
-zuul:
-  routes:
-    # Begin of custom module microservices - add mapping relevant to your microservice
+  cloud:
+    gateway:
+      routes:
+      # Begin of custom module microservices - add mapping relevant to your microservice
 
-    # Begin of Business Intelligence microservice
-    businessIntelligenceApplication:
-      path: /service/abixen/business-intelligence/application/**
-      url: http://localhost:9091/service/abixen/business-intelligence/application
-      sensitive-headers:
-    businessIntelligenceApplicationApi:
-      path: /api/service/abixen/business-intelligence/application/**
-      url: http://localhost:9091/api/service/abixen/business-intelligence/application
-      sensitive-headers:
-    businessIntelligenceAdmin:
-      path: /service/abixen/business-intelligence/control-panel/**
-      url: http://localhost:9091/service/abixen/business-intelligence/control-panel
-      sensitive-headers:
-    businessIntelligenceAdminApi:
-      path: /api/service/abixen/business-intelligence/control-panel/**
-      url: http://localhost:9091/api/service/abixen/business-intelligence/control-panel
-      sensitive-headers:
-    # End of Business Intelligence microservice
+      # Begin of Business Intelligence microservice
+      - id: businessIntelligenceApplication
+        uri: http://localhost:9091/service/abixen/business-intelligence/application
+        predicates:
+        - Path=/service/abixen/business-intelligence/application/**
+        filters:
+        - CircuitBreaker
+      - id: businessIntelligenceApplicationApi
+        uri: http://localhost:9091/api/service/abixen/business-intelligence/application
+        predicates:
+        - Path=/api/service/abixen/business-intelligence/application/**
+        filters:
+        - CircuitBreaker
+      - id: businessIntelligenceAdmin
+        uri: http://localhost:9091/service/abixen/business-intelligence/control-panel
+        predicates:
+        - Path=/service/abixen/business-intelligence/control-panel/**
+        filters:
+        - CircuitBreaker
+      - id: businessIntelligenceAdminApi
+        uri: http://localhost:9091/api/service/abixen/business-intelligence/control-panel
+        predicates:
+        - Path=/api/service/abixen/business-intelligence/control-panel/**
+        filters:
+        - CircuitBreaker
+      # End of Business Intelligence microservice
 
-    # Begin of Web Content microservice
-    webContentApplication:
-      path: /service/abixen/web-content/application/**
-      url: http://localhost:9092/service/abixen/web-content/application
-      sensitive-headers:
-    webContentApplicationApi:
-      path: /api/service/abixen/web-content/application/**
-      url: http://localhost:9092/api/service/abixen/web-content/application
-      sensitive-headers:
-    webContentAdmin:
-      path: /service/abixen/web-content/control-panel/**
-      url: http://localhost:9092/service/abixen/web-content/control-panel/
-      sensitive-headers:
-    webContentAdminApi:
-      path: /api/service/abixen/web-content/control-panel/**
-      url: http://localhost:9092/api/service/abixen/web-content/control-panel/
-      sensitive-headers:
-    # End of Web Content microservice
+      # Begin of Web Content microservice
+      - id: webContentApplication
+        uri: http://localhost:9092/service/abixen/web-content/application
+        predicates:
+        - Path=/service/abixen/web-content/application/**
+        filters:
+        - CircuitBreaker
+      - id: webContentApplicationApi
+        uri: http://localhost:9092/api/service/abixen/web-content/application
+        predicates:
+        - Path=/api/service/abixen/web-content/application/**
+        filters:
+        - CircuitBreaker
+      - id: webContentAdmin
+        uri: http://localhost:9092/service/abixen/web-content/control-panel
+        predicates:
+        - Path=/service/abixen/web-content/control-panel/**
+        filters:
+        - CircuitBreaker
+      - id: webContentAdminApi
+        uri: http://localhost:9092/api/service/abixen/web-content/control-panel
+        predicates:
+        - Path=/api/service/abixen/web-content/control-panel/**
+        filters:
+        - CircuitBreaker
+      # End of Web Content microservice
 
-    # End of custom module microservices
-    resource:
-      path: /resource/**
-      url: http://localhost:9000
-      sensitive-headers:
-    api:
-      path: /api/**
-      url: http://localhost:9000/api
-      sensitive-headers:
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 60000
+      # End of custom module microservices
+      - id: api
+        uri: http://localhost:9000/api
+        predicates:
+        - Path=/api/**
+        filters:
+        - CircuitBreaker
+
 eureka:
   instance:
     hostname: localhost

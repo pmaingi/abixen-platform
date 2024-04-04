@@ -3,7 +3,7 @@
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd"
         logicalFilePath="liquibase/changelog/multi-visualisation/chart-configuration-changelog.xml">
 
     <changeSet author="MariuszKumor" id="chart-configuration-v1">
@@ -21,7 +21,7 @@
             <column name="axis_y_name" type="varchar(255)">
                 <constraints nullable="true"/>
             </column>
-            <column name="filter" type="longvarchar"/>
+            <column name="filter_" type="longvarchar"/>
             <column name="chart_type" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
